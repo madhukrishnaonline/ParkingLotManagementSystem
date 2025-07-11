@@ -1,0 +1,26 @@
+<div class="container mt-5">
+    <h2>🔍 Vehicle History</h2>
+    <input class="form-control mb-3" [(ngModel)]="vehicleNo" placeholder="Search by vehicle number" />
+    <button class="btn btn-secondary mb-3" (click)="search()">Search</button>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Ticket</th>
+                <th>Vehicle</th>
+                <th>Entry</th>
+                <th>Exit</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let h of history">
+                <td>{{ h.id }}</td>
+                <td>{{ h.vehicleNo }}</td>
+                <td>{{ h.entryTime }}</td>
+                <td>{{ h.exitTime }}</td>
+                <td>₹{{ h.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

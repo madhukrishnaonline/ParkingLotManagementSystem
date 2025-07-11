@@ -1,0 +1,23 @@
+<div class="text-center">
+    <h1>Available Parking Spots</h1>
+    <table class="table table-active table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Spot_Type</th>
+                <th>Empty</th>
+                <!-- <th>Vehicle Id</th> -->
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let spots of parkingSpots">
+                <td>{{spots.id}}</td>
+                <td>{{spots.spotType}}</td>
+                <td>{{spots.empty}}</td>
+                <!-- <td>{{spots.vehicleId}}</td> -->
+                <td>{{spots.price}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

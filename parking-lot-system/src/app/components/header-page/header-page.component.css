@@ -1,0 +1,9 @@
+.navbar-nav .nav-link {
+  font-weight: 500;
+  padding: 8px 15px;
+  color: white;
+}
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}

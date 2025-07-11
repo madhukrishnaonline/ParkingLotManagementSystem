@@ -1,0 +1,33 @@
+<div class="container mt-5">
+    <h2 class="mb-4">🚪 Exit a Vehicle</h2>
+
+    <form [formGroup]="exitForm" (ngSubmit)="confirmExit()">
+        <div class="mb-3">
+            <label for="ticketId" class="form-label">Ticket ID</label>
+            <input type="text" id="ticketId" class="form-control" formControlName="ticketId" placeholder="TCK123" />
+        </div>
+        <button type="submit" class="btn btn-warning" [disabled]="exitForm.invalid">Proceed to Exit</button>
+    </form>
+
+    <!-- Confirmation Modal -->
+    <div *ngIf="showConfirm" class="modal d-block bg-dark bg-opacity-50">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirm Exit</h5>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to exit this vehicle?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" (click)="cancelExit()">Cancel</button>
+                    <button class="btn btn-primary" (click)="proceedExit()">Yes, Exit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Show Bill -->
+    <div *ngIf="billAmount !== null" class="alert alert-info mt-4">
+        Total Bill: ₹{{ billAmount }}
+    </div>
+</div>

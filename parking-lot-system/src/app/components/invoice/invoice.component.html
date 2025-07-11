@@ -1,0 +1,14 @@
+<div class="container mt-5">
+    <h2 class="mb-4">🧾 Invoice for Ticket: {{ ticketId }}</h2>
+    <div *ngIf="invoiceData">
+        <ul class="list-group mb-3">
+            <li class="list-group-item">Vehicle No: {{ invoiceData.vehicleNo }}</li>
+            <li class="list-group-item">Entry Time: {{ invoiceData.entryTime }}</li>
+            <li class="list-group-item">Exit Time: {{ invoiceData.exitTime }}</li>
+            <li class="list-group-item">Price: ₹{{ invoiceData.price }}</li>
+            <li class="list-group-item">Paid: {{ invoiceData.paid }}</li>
+        </ul>
+        <button class="btn btn-outline-primary" (click)="downloadInvoice()">Download Invoice</button>
+        <button class="btn btn-outline-danger ms-2" (click)="downloadPDF()">Export PDF</button>
+    </div>
+</div>

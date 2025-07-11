@@ -1,0 +1,62 @@
+<div class="container mt-4">
+    <h2 class="mb-4">📊 Parking Dashboard</h2>
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <h5 class="card-title">Available Spots</h5>
+                    <p class="card-text fs-4">{{ stats.availableSpots }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-danger">
+                <div class="card-body">
+                    <h5 class="card-title">Occupied Spots</h5>
+                    <p class="card-text fs-4">{{ stats.occupiedSpots }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-info">
+                <div class="card-body">
+                    <h5 class="card-title">Total Revenue</h5>
+                    <p class="card-text fs-4">₹{{ stats.totalRevenue }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <h5 class="card-title">Total Vehicles</h5>
+                    <p class="card-text fs-4">{{ stats.totalVehicles }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h4>🕓 Recent Parking Sessions</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Ticket ID</th>
+                <th>Vehicle</th>
+                <th>Entry</th>
+                <th>Exit</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let t of recentTickets">
+                <td>{{ t.id }}</td>
+                <td>{{ t.vehicleNo }}</td>
+                <td>{{ t.entryTime }}</td>
+                <td>{{ t.exitTime || '-' }}</td>
+                <td>₹{{ t.price || '-' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- <h4 class="mt-5">📈 Revenue Trend</h4>
+    <canvas baseChart [data]="revenueChartData" chartType="line" [options]="{ responsive: true }">
+    </canvas> -->
+</div>

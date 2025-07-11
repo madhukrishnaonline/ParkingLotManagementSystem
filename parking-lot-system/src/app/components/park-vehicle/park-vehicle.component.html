@@ -1,0 +1,27 @@
+<div class="container mt-5">
+    <h2 class="mb-4">🚙 Park a Vehicle</h2>
+
+    <form [formGroup]="parkForm" (ngSubmit)="park()">
+        <div class="mb-3">
+            <label for="vehicleNo" class="form-label">Vehicle Number</label>
+            <input type="text" id="vehicleNo" class="form-control" formControlName="vehicleNo" placeholder="AP 1234" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Vehicle Type</label>
+            <select class="form-select" formControlName="type">
+                <option value="TWO_WHEELER">Two Wheeler</option>
+                <option value="FOUR_WHEELER">Four Wheeler</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Parking Strategy</label>
+            <select class="form-select" formControlName="strategy">
+                <option *ngFor="let s of strategies" [value]="s">{{ s }}</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success" [disabled]="parkForm.invalid">Park Vehicle</button>
+    </form>
+</div>

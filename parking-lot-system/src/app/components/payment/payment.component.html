@@ -1,0 +1,10 @@
+<div class="container mt-5">
+    <h2 class="mb-4">💳 Confirm Payment</h2>
+    <form [formGroup]="payForm" (ngSubmit)="payNow()">
+        <div class="mb-3">
+            <label for="ticketId" class="form-label">Ticket ID</label>
+            <input type="text" id="ticketId" class="form-control" formControlName="ticketId" placeholder="TCK123" />
+        </div>
+        <button type="submit" class="btn btn-success">Pay Now</button>
+    </form>
+</div>
