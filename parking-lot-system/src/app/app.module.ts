@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -18,6 +18,7 @@ import { ExitVehicleComponent } from './components/exit-vehicle/exit-vehicle.com
 import { ParkVehicleComponent } from './components/park-vehicle/park-vehicle.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptor } from './services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,11 @@ import { LoginComponent } from './components/login/login.component';
       preventDuplicates: true
     })
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

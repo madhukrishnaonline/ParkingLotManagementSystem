@@ -1,12 +1,14 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { VehicleModelRequest } from "../models/vehicle-request";
 
-const parkingSpotUrl: string = '';
+declare const parkingSpotUrl: string;
 @Injectable({
     providedIn: 'root'
 })
 export class ParkingSpotService {
+
     getHistory(vehicleNo: string): Observable<any> {
         throw new Error('Method not implemented.');
     }
@@ -36,12 +38,12 @@ export class ParkingSpotService {
         return this.http.get<any>(parkingSpotUrl);
     }
 
-    parkVehicle(vehicle: { vehicleNo: any; type: any; }, strategy: any): Observable<any> {
-        return this.http.post(parkingSpotUrl, vehicle);
+    parkVehicle(vehicle: VehicleModelRequest, strategy: any): Observable<any> {
+        return this.http.post(`${parkingSpotUrl}?strategy=${strategy}`, vehicle);
     }
 
     public getAvailableSpots(): Observable<any[]> {
-        return this.http.get<any[]>(`http://localhost:7979/spots/available`);
+        return this.http.get<any[]>(`${parkingSpotUrl}available`);
     }
 
     public getAllSpotStatus(): Observable<any[]> {

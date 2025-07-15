@@ -13,10 +13,12 @@
   <app-root></app-root>
 
   <script>
-    parkingSpotUrl = "http://localhost:7979/spots/";
-    entryGateUrl = "http://localhost:7979/entry/";
-    exitGateUrl = "http://localhost:7979/exit/";
-    ticketHistoryUrl = "http://localhost:7979/tickets/"
+    baseURL = "http://localhost:7979/";
+    parkingManagerUrl = `${baseURL}manager`;
+    parkingSpotUrl = `${baseURL}spots/`;
+    entryGateUrl = `${baseURL}entry/`;
+    exitGateUrl = `${baseURL}exit/`;
+    ticketHistoryUrl = `${baseURL}tickets/`;
   </script>
 </body>
 

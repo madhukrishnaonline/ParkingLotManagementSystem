@@ -9,10 +9,12 @@ import { TicketHistoryComponent } from '../components/ticket-history/ticket-hist
 import { ParkVehicleComponent } from '../components/park-vehicle/park-vehicle.component';
 import { ExitVehicleComponent } from '../components/exit-vehicle/exit-vehicle.component';
 import { PaymentComponent } from '../components/payment/payment.component';
+import { LoginComponent } from '../components/login/login.component';
 
 const routes: Routes = [
     { path: 'home', component: HomePageComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: 'login', component: LoginComponent },
     { path: 'dashboard', component: DashboardComponent },
     { path: 'park', component: ParkVehicleComponent },
     { path: 'exit', component: ExitVehicleComponent },
