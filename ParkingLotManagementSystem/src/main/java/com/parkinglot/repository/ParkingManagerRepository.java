@@ -10,4 +10,6 @@ import com.parkinglot.entity.ParkingManagerEntity;
 @Repository
 public interface ParkingManagerRepository extends JpaRepository<ParkingManagerEntity, Long> {
     Optional<ParkingManagerEntity> findByUsername(String username);
+
+	boolean existsByMail(String mail);
 }

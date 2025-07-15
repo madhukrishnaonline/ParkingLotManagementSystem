@@ -23,7 +23,7 @@ public class ParkingManagerEntity {
 
 	@Column(unique = true)
 	private String username;
-	
+
 	private String password;
 
 	private String fullName;
@@ -31,8 +31,8 @@ public class ParkingManagerEntity {
 	private Long mobile;
 
 	private String mail;
-	
-	@ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
-	@JoinTable(name="Manager_Roles",joinColumns = @JoinColumn(name = "managerId",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name="roleId",referencedColumnName = "id"))
+
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JoinTable(name = "Manager_Roles", joinColumns = @JoinColumn(name = "managerId", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "roleId", referencedColumnName = "id"))
 	private Collection<RoleEntity> roles;
 }

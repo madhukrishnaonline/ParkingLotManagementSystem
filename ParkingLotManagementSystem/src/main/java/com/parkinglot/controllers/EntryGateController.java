@@ -2,6 +2,7 @@ package com.parkinglot.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ public class EntryGateController {
 	private final ParkingService parkingService;
 
 	@PostMapping("/park")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<ParkResponseDTO> allowEntry(@Valid @RequestBody VehicleRequestDTO dto,
 			@RequestParam(defaultValue = "defaultEntrance") String strategy) throws TicketCreationException {
 		ParkResponseDTO responseTicket = parkingService.generateTicket(dto, strategy);

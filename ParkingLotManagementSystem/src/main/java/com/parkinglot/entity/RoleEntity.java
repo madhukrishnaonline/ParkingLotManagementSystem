@@ -36,7 +36,7 @@ public class RoleEntity {
 	@JsonIgnore
 	private Collection<ParkingManagerEntity> managers;
 
-	@ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinTable(name = "Roles_Authorities", joinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "authorities_id", referencedColumnName = "id"))
 	private Collection<AuthorityEntity> authorities;
 }

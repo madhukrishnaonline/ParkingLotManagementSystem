@@ -32,9 +32,10 @@ public class AuthenticationManagerFilter extends UsernamePasswordAuthenticationF
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
 		try {
-			ManagerRequest userRequest = new ObjectMapper().readValue(request.getInputStream(), ManagerRequest.class);
-			return getAuthenticationManager().authenticate(
-					new UsernamePasswordAuthenticationToken(userRequest.getUsername(), userRequest.getPassword()));
+			ManagerRequest managerRequest = new ObjectMapper().readValue(request.getInputStream(),
+					ManagerRequest.class);
+			return getAuthenticationManager().authenticate(new UsernamePasswordAuthenticationToken(
+					managerRequest.getUsername(), managerRequest.getPassword()));
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e.getMessage());
