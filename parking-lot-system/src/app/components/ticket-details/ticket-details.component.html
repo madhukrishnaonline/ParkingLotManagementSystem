@@ -1,0 +1,16 @@
+<div class="container mt-5">
+    <h2>🔍 Vehicle History</h2>
+    <input class="form-control mb-3" [(ngModel)]="ticketId" placeholder="Search by Ticket Id" />
+    <button class="btn btn-secondary mb-3" (click)="searchTicketDetails(ticketId)">Search</button>
+</div>
+
+<div class="container mt-4" *ngIf="ticket">
+    <h3>🎟️ Ticket Details</h3>
+    <p><strong>ID:</strong> {{ ticket.ticketId }}</p>
+    <p><strong>Vehicle:</strong> {{ ticket.vehicleNo }} ({{ ticket.vehicleType }})</p>
+    <p><strong>Spot:</strong> {{ ticket.spotId }}</p>
+    <p><strong>Entry Time:</strong> {{ ticket.entryTime }}</p>
+    <p *ngIf="ticket.exitTime"><strong>Exit Time:</strong> {{ ticket.exitTime }}</p>
+    <p *ngIf="ticket.price"><strong>Price:</strong> ₹{{ ticket.price }}</p>
+    <p><strong>Status:</strong> {{ ticket.paid ? 'Paid' : 'Unpaid' }}</p>
+</div>

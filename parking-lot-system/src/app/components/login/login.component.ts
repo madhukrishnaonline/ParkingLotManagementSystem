@@ -18,6 +18,7 @@ export class LoginComponent {
   constructor(private managerService: ManagerService, private router: Router) { }
 
   login() {
+    console.log(this.loginRequest);
     this.managerService.login(this.loginRequest).subscribe({
       next: () => this.router.navigate(['/dashboard']),
       error: () => alert('Invalid login')

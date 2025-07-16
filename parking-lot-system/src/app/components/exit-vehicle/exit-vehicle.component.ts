@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ParkingSpotService } from '../../services/parking-spot.service';
+import { BillResponseContract } from '../../models/bill-response.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-exit-vehicle',
@@ -11,12 +13,23 @@ import { ParkingSpotService } from '../../services/parking-spot.service';
 export class ExitVehicleComponent {
  exitForm: FormGroup;
   showConfirm: boolean = false;
-  billAmount: number | null = null;
+  // billAmount: number | null = null;
+  billResponse:BillResponseContract={
+    ticketId: '',
+    vehicleNo: '',
+    vehicleType: '',
+    entryTime: '',
+    exitTime: '',
+    totalMinutes: '',
+    price: 0,
+    message: ''
+  }
 
   constructor(
     private fb: FormBuilder,
     private parkingService: ParkingSpotService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router:Router
   ) {
     this.exitForm = this.fb.group({
       ticketId: ['', Validators.required]
@@ -31,10 +44,11 @@ export class ExitVehicleComponent {
     const { ticketId } = this.exitForm.value;
     this.parkingService.exitVehicle(ticketId).subscribe({
       next: (amount) => {
-        this.billAmount = amount;
+        this.billResponse = amount;
         this.toastr.success('Vehicle exited. Bill: ₹' + amount);
         this.exitForm.reset();
         this.showConfirm = false;
+        this.router.navigate(['/pay',this.billResponse.ticketId]);
       },
       error: () => {
         this.toastr.error('Ticket not found or already exited.');

@@ -19,6 +19,7 @@ import { ParkVehicleComponent } from './components/park-vehicle/park-vehicle.com
 import { PaymentComponent } from './components/payment/payment.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './services/auth-interceptor.service';
+import { TicketDetailsComponent } from './components/ticket-details/ticket-details.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AuthInterceptor } from './services/auth-interceptor.service';
     ExitVehicleComponent,
     ParkVehicleComponent,
     PaymentComponent,
-    LoginComponent
+    LoginComponent,
+    TicketDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -18,7 +18,7 @@ export class ManagerService {
 
     //login
     login(loginRequest: LoginRequest): Observable<any> {
-        return this.http.post<any>(`${baseURL}login`, loginRequest, { observe: 'response' }).pipe(
+        return (this.http.post<any>(`${baseURL}login`, loginRequest, { observe: 'response' }).pipe(
             map(response => {
                 const token = response.headers.get('Authorization');
                 if (token) {
@@ -26,7 +26,7 @@ export class ManagerService {
                 }
                 return response;
             })
-        );
+        ));
     }
 
     getUserById(id: string | null): Observable<ManagerModelContract> {

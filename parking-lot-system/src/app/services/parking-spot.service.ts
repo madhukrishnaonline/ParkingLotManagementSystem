@@ -1,19 +1,31 @@
+import { TicketModelContract } from './../models/ticket-model';
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { VehicleModelRequest } from "../models/vehicle-request";
+import { VehicleModelContract } from '../models/vehicle-model';
+import { BillResponseContract } from '../models/bill-response.model';
 
 declare const parkingSpotUrl: string;
+declare const entryGateUrl: string;
+declare const exitGateUrl:string;
+declare const ticketHistoryUrl: string;
+declare const vehicleURL:string;
 @Injectable({
     providedIn: 'root'
 })
 export class ParkingSpotService {
-
-    getHistory(vehicleNo: string): Observable<any> {
-        throw new Error('Method not implemented.');
+    constructor(private http: HttpClient) { };
+   
+    getTicketDetails(ticketId: string): Observable<TicketModelContract> {
+        return this.http.get<TicketModelContract>(`${ticketHistoryUrl}history/${ticketId}`);
     }
+
+    getVehicleHistory(vehicleNo: string): Observable<VehicleModelContract[]> {
+        return this.http.get<VehicleModelContract[]>(`${vehicleURL}history/${vehicleNo}`);
+    }
+
     downloadInvoicePdf(ticketId: string): Observable<Blob> {
-        return this.http.get(`http://localhost:8080/invoice/pdf/${ticketId}`, {
+        return this.http.get(`${ticketHistoryUrl}invoice/${ticketId}`, {
             responseType: 'blob'
         });
     }
@@ -27,19 +39,18 @@ export class ParkingSpotService {
     getInvoice(ticketId: string): Observable<any> {
         throw new Error('Method not implemented.');
     }
-    constructor(private http: HttpClient) { };
 
     confirmPayment(ticketId: any): Observable<any> {
         throw new Error('Method not implemented.');
     }
 
 
-    exitVehicle(ticketId: any): Observable<any> {
-        return this.http.get<any>(parkingSpotUrl);
+    exitVehicle(ticketId: string): Observable<BillResponseContract> {
+        return this.http.post<BillResponseContract>(`${exitGateUrl}out/${ticketId}`,"");
     }
 
-    parkVehicle(vehicle: VehicleModelRequest, strategy: any): Observable<any> {
-        return this.http.post(`${parkingSpotUrl}?strategy=${strategy}`, vehicle);
+    parkVehicle(vehicle: { vehicleNo: any; type: any; }, strategy: any): Observable<TicketModelContract> {
+        return this.http.post<TicketModelContract>(`${entryGateUrl}park?strategy=${strategy}`, vehicle);
     }
 
     public getAvailableSpots(): Observable<any[]> {

@@ -13,7 +13,7 @@
         <tbody>
             <tr *ngFor="let spots of parkingSpots">
                 <td>{{spots.id}}</td>
-                <td>{{spots.spotType}}</td>
+                <td><span *ngIf="spots.spotType=='FourWheelerParkingSpot'">🚗</span> {{spots.spotType}}</td>
                 <td>{{spots.empty}}</td>
                 <!-- <td>{{spots.vehicleId}}</td> -->
                 <td>{{spots.price}}</td>

@@ -1,7 +1,7 @@
 <div class="container mt-5">
     <h2 class="mb-4">🚙 Park a Vehicle</h2>
 
-    <form [formGroup]="parkForm" (ngSubmit)="park()">
+    <form [formGroup]="parkForm" (ngSubmit)="parkVehicle()">
         <div class="mb-3">
             <label for="vehicleNo" class="form-label">Vehicle Number</label>
             <input type="text" id="vehicleNo" class="form-control" formControlName="vehicleNo" placeholder="AP 1234" />

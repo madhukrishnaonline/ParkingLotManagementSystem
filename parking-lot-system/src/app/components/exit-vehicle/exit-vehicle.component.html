@@ -26,8 +26,14 @@
             </div>
         </div>
     </div>
-    <!-- Show Bill -->
-    <div *ngIf="billAmount !== null" class="alert alert-info mt-4">
-        Total Bill: ₹{{ billAmount }}
+    <!-- Show Bill REsponse-->
+    <div *ngIf="billResponse!=null" class="alert alert-info mt-4">
+        <span>Id : {{billResponse.ticketId}}</span><br>
+        <span>Vehicle : {{billResponse.vehicleNo}}({{billResponse.vehicleType}})</span><br>
+        <span>Entry Time : {{billResponse.entryTime}}</span><br>
+        <span>Exit Time : {{billResponse.exitTime}}</span><br>
+        <span>Message : {{billResponse.message}}</span><br>
+        <span>Total Minutes : {{billResponse.totalMinutes}}</span><br>
+        <span>Total Bill: ₹ {{billResponse.price}}</span>
     </div>
 </div>

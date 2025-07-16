@@ -14,12 +14,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let h of history">
-                <td>{{ h.id }}</td>
-                <td>{{ h.vehicleNo }}</td>
-                <td>{{ h.entryTime }}</td>
-                <td>{{ h.exitTime }}</td>
-                <td>₹{{ h.price }}</td>
+            <tr *ngFor="let history of histories">
+                <td>{{ history.ticketId}}</td>
+                <td>{{ history.vehicleNo }}</td>
+                <td>{{ history.entryTime }}</td>
+                <td>{{ history.exitTime }}</td>
+                <td>₹{{ history.price }}</td>
             </tr>
         </tbody>
     </table>
