@@ -10,7 +10,7 @@ import com.parkinglot.entity.ParkingSpot;
 import com.parkinglot.entity.TwoWheelerParkingSpot;
 import com.parkinglot.entity.VehicleType;
 
-@Component
+@Component("nearToExit")
 public class NearToExit implements ParkingStrategy {
 
 	@Override

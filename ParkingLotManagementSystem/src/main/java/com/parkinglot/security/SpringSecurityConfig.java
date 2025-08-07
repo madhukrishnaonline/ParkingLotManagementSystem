@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -30,10 +31,7 @@ public class SpringSecurityConfig {
 		managerBuilder.userDetailsService(service).passwordEncoder(passwordEncoder);
 		AuthenticationManager authenticationManager = managerBuilder.build();
 
-		return security
-				.csrf(csrf -> csrf
-						.disable())
-				.cors(cors -> cors.configurationSource(registerCors()))
+		return security.csrf(CsrfConfigurer::disable).cors(cors -> cors.configurationSource(registerCors()))
 				.authorizeHttpRequests(
 						request -> request.requestMatchers("/spots/**", "/vehicle/**", "/parkingManager/register", "/",
 								"/h2-console/**", "/login/**").permitAll().anyRequest().authenticated())
@@ -51,6 +49,7 @@ public class SpringSecurityConfig {
 		configuration.setAllowedMethods(List.of("*"));
 		configuration.setAllowCredentials(true);
 		configuration.setAllowedHeaders(List.of("*"));
+		configuration.setExposedHeaders(List.of("*"));
 
 		UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
 		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", configuration);
