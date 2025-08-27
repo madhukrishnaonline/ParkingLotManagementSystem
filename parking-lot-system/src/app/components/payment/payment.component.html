@@ -4,6 +4,7 @@
         <div class="mb-3">
             <label for="ticketId" class="form-label">Ticket ID</label>
             <input type="text" id="ticketId" class="form-control" formControlName="ticketId" placeholder="TCK123" />
+            <div *ngIf="getTicketId()?.invalid && getTicketId()?.touched">TicketId is required</div>
         </div>
         <button type="submit" class="btn btn-success">Pay Now</button>
     </form>

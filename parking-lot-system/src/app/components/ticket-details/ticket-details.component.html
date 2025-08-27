@@ -1,5 +1,5 @@
-<div class="container mt-5">
-    <h2>🔍 Vehicle History</h2>
+<div class="container mt-5" *ngIf="searchStatus">
+    <h2>🔍 Get Vehicle Details</h2>
     <input class="form-control mb-3" [(ngModel)]="ticketId" placeholder="Search by Ticket Id" />
     <button class="btn btn-secondary mb-3" (click)="searchTicketDetails(ticketId)">Search</button>
 </div>

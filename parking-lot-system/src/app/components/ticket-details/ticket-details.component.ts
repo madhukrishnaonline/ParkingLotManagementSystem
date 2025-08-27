@@ -33,6 +33,14 @@ export class TicketDetailsComponent implements OnInit {
     }
   }
 
+  searchStatus: boolean = false;
+  toggleSearch() {
+    if (this.searchStatus) {
+     return this.searchStatus = false;
+    }
+    return this.searchStatus;
+  }
+
   searchTicketDetails(ticketId: string) {
     this.parkingService.getTicketDetails(ticketId).subscribe(res => {
       this.ticket = res;

@@ -42,17 +42,16 @@ export class ParkingSpotComponent implements OnInit {
       },
     });
   }
-  
+
   parkingSpots: any[] = [];
 
   //constructor(private parkingService: ParkingSpotService) { }
 
   public getAvailableSpots() {
-    this.parkingService.getAvailableSpots().subscribe(
-      (spots) => {
-        this.parkingSpots = spots;
-      }
-    )
+    this.parkingService.getAvailableSpots().subscribe({
+      next: (spots) => this.parkingSpots = spots,
+      error: (errorResponse) => console.log(errorResponse)
+    });
   }
 
   ngOnInit(): void {

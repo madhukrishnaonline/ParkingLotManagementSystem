@@ -5,6 +5,7 @@ export interface TicketModelContract {
     vehicleType: string;
     entryTime: string;
     exitTime: string;
+    totalTimeVehicleParked?: number;
     price: number;
     paid: boolean;
 }

@@ -23,16 +23,22 @@ export class PaymentComponent {
     });
   }
 
+  getTicketId(){
+    return this.payForm.get("ticketId");
+  }
+
   payNow() {
-    const { ticketId } = this.payForm.value;
-    this.parkingService.confirmPayment(ticketId).subscribe({
-      next: () => {
-        this.toastr.success('Payment confirmed');
-        this.router.navigate(['/invoice', ticketId]);
-      },
-      error: () => {
-        this.toastr.error('Payment failed or ticket not found');
-      }
-    });
+    if (this.payForm.valid) {
+      const { ticketId } = this.payForm.value;
+      this.parkingService.confirmPayment(ticketId).subscribe({
+        next: () => {
+          this.toastr.success('Payment confirmed');
+          this.router.navigate(['/invoice', ticketId]);
+        },
+        error: () => {
+          this.toastr.error('Payment failed or ticket not found');
+        }
+      });
+    }
   }
 }

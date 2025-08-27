@@ -11,10 +11,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./exit-vehicle.component.css']
 })
 export class ExitVehicleComponent {
- exitForm: FormGroup;
+  exitForm: FormGroup;
   showConfirm: boolean = false;
   // billAmount: number | null = null;
-  billResponse:BillResponseContract={
+  billResponse: BillResponseContract = {
     ticketId: '',
     vehicleNo: '',
     vehicleType: '',
@@ -29,7 +29,7 @@ export class ExitVehicleComponent {
     private fb: FormBuilder,
     private parkingService: ParkingSpotService,
     private toastr: ToastrService,
-    private router:Router
+    private router: Router
   ) {
     this.exitForm = this.fb.group({
       ticketId: ['', Validators.required]
@@ -45,10 +45,10 @@ export class ExitVehicleComponent {
     this.parkingService.exitVehicle(ticketId).subscribe({
       next: (amount) => {
         this.billResponse = amount;
-        this.toastr.success('Vehicle exited. Bill: ₹' + amount);
+        this.toastr.success('Vehicle exited. Bill: ₹' + JSON.stringify(amount));
         this.exitForm.reset();
         this.showConfirm = false;
-        this.router.navigate(['/pay',this.billResponse.ticketId]);
+        this.router.navigateByUrl('/pay');
       },
       error: () => {
         this.toastr.error('Ticket not found or already exited.');

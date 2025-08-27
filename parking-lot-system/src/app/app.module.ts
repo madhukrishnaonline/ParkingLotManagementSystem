@@ -34,7 +34,7 @@ import { TicketDetailsComponent } from './components/ticket-details/ticket-detai
     ParkVehicleComponent,
     PaymentComponent,
     LoginComponent,
-    TicketDetailsComponent
+    TicketDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,8 +4,8 @@
         <div class="col-md-3">
             <div class="card text-white bg-success">
                 <div class="card-body">
-                    <h5 class="card-title">Available Spots</h5>
-                    <p class="card-text fs-4">{{ stats.availableSpots }}</p>
+                    <h5 class="card-title">Available Spot No.'s</h5>
+                    <span class="card-text fs-4" *ngFor="let spot of availableSpots">{{ spot.id }},</span>
                 </div>
             </div>
         </div>
@@ -13,7 +13,7 @@
             <div class="card text-white bg-danger">
                 <div class="card-body">
                     <h5 class="card-title">Occupied Spots</h5>
-                    <p class="card-text fs-4">{{ stats.occupiedSpots }}</p>
+                    <span class="card-text fs-4" *ngFor="let spot of occupiedSpots">{{ spot.id }},</span>
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
             <div class="card text-white bg-info">
                 <div class="card-body">
                     <h5 class="card-title">Total Revenue</h5>
-                    <p class="card-text fs-4">₹{{ stats.totalRevenue }}</p>
+                    <p class="card-text fs-4">₹{{ totalRevenue }}</p>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
             <div class="card text-white bg-primary">
                 <div class="card-body">
                     <h5 class="card-title">Total Vehicles</h5>
-                    <p class="card-text fs-4">{{ stats.totalVehicles }}</p>
+                    <p class="card-text fs-4">{{ vehiclesCount }}</p>
                 </div>
             </div>
         </div>
@@ -41,18 +41,48 @@
             <tr>
                 <th>Ticket ID</th>
                 <th>Vehicle</th>
+                <th>Spot Id</th>
                 <th>Entry</th>
-                <th>Exit</th>
-                <th>Price</th>
+                <!-- <th>Exit</th>
+                <th>Price</th> -->
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let t of recentTickets">
-                <td>{{ t.id }}</td>
-                <td>{{ t.vehicleNo }}</td>
-                <td>{{ t.entryTime }}</td>
-                <td>{{ t.exitTime || '-' }}</td>
-                <td>₹{{ t.price || '-' }}</td>
+            <tr *ngFor="let vehicle of recentParkedVehicles">
+                <td>{{ vehicle.ticketId }}</td>
+                <td>{{ vehicle.vehicleNo }} - {{ vehicle.vehicleType }}</td>
+                <td>{{vehicle.spotId}}</td>
+                <td>{{ vehicle.entryTime|slice:11:19}}</td>
+                <!-- <td>{{ vehicle.exitTime || '-' }}</td>
+                <td>₹{{ vehicle.price || '-' }}</td> -->
+            </tr>
+        </tbody>
+    </table>
+
+    <h4>🕓 Recent Exited Sessions</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Ticket ID</th>
+                <th>Vehicle</th>
+                <th>Spot Id</th>
+                <th>Entry</th>
+                <th>Exit</th>
+                <th>Total Parked Time</th>
+                <th>Price</th>
+                <th>Paid</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let vehicle of recentExitedVehicles">
+                <td>{{ vehicle.ticketId }}</td>
+                <td>{{ vehicle.vehicleNo }} - {{ vehicle.vehicleType }}</td>
+                <td>{{vehicle.spotId}}</td>
+                <td>{{ vehicle.entryTime|slice:11:19}}</td>
+                <td>{{ vehicle.exitTime|slice:11:19 }}</td>
+                <td>{{vehicle.totalTimeVehicleParked}} Minutes</td>
+                <td>₹{{ vehicle.price || '-' }}</td>
+                <td>{{ vehicle.paid?'Paid':'Not Paid' }}</td>
             </tr>
         </tbody>
     </table>
